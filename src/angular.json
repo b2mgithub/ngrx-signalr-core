@@ -37,6 +37,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ngrx-signalr-core"
+    }
+  },
+  "defaultProject": "ngrx-signalr-core",
+  "cli": {
+    "analytics": "208ef886-b0a3-4f41-b8a3-8d5b12e3cadf"
+  }
 }

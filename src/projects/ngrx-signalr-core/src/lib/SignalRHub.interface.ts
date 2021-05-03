@@ -61,10 +61,18 @@ export interface ISignalRHub {
   stream<T>(methodName: string, ...args: any[]): Observable<T>;
   /**
    * Call a function from the client to the server.
+   * returns a promise that is resolved when the client has sent the invocation to the server.
    * @param methodName Name of the event to execute.
    * @param args Arguments to pass to the event function (the hub function).
    */
-  send<T>(methodName: string, ...args: any[]): Observable<T>;
+  send(methodName: string, ...args: any[]): Observable<void>;
+  /**
+   * Call a function from the client to the server.
+   * returns a promise that is resolved when the server has finished invoking the function.
+   * @param methodName Name of the event to execute.
+   * @param args Arguments to pass to the event function (the hub function).
+   */
+  invoke<T>(methodName: string, ...args: any[]): Observable<T>;
   /**
    * Send realtime stream events from the client to the server.
    * @param methodName Name of the stream.

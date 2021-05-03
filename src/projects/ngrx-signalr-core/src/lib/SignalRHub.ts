@@ -107,7 +107,17 @@ export class SignalRHub implements ISignalRHub {
     }).pipe(share());
   }
 
-  send<T extends any>(methodName: string, ...args: any[]) {
+  send(methodName: string, ...args: any[]) {
+    if (!this._connection) {
+      return throwError(
+        "The connection has not been started yet. Please start the connection by invoking the start method before attempting to send a message to the server."
+      );
+    }
+
+    return from(this._connection.send(methodName, ...args));
+  }  
+  
+  invoke<T extends any>(methodName: string, ...args: any[]) {
     if (!this._connection) {
       return throwError(
         "The connection has not been started yet. Please start the connection by invoking the start method before attempting to send a message to the server."

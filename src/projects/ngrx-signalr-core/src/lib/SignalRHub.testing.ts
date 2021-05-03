@@ -47,7 +47,8 @@ export abstract class SignalRTestingHub implements ISignalRHub {
   abstract on<T>(eventName: string): Observable<T>;
   abstract off(eventName: string): void;
   abstract stream<T>(methodName: string, ...args: any[]): Observable<T>;
-  abstract send<T>(methodName: string, ...args: any[]): Observable<T>;
+  abstract send(methodName: string, ...args: any[]): Observable<void>;
+  abstract invoke<T>(methodName: string, ...args: any[]): Observable<T>;
   abstract sendStream<T>(methodName: string, observable: Observable<T>): void;
 
   hasSubscriptions(): boolean {
